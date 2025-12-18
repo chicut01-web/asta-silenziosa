@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Heart, CheckCircle, Copy, Banknote } from 'lucide-react';
+import { Heart, CheckCircle, Copy, Banknote, Users } from 'lucide-react';
 
 const Participation: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -19,19 +19,19 @@ const Participation: React.FC = () => {
           <div>
             <h2 className="text-[10px] font-bold text-yellow-500 uppercase tracking-[0.3em] mb-6">Guida al Dono</h2>
             <h3 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-gray-900 mb-8">
-              Come <br /> <span className="font-serif italic font-normal">Partecipare</span>
+              Il Valore <br /> <span className="font-serif italic font-normal">del Tuo Gesto</span>
             </h3>
             <p className="text-xl text-gray-500 leading-relaxed max-w-lg mb-12">
-              L'asta silenziosa è un atto di fiducia e bellezza. Scopri come rendere la tua passione per l'arte un gesto di solidarietà.
+              L'intero ricavato dell'asta sarà destinato al supporto di <span className="text-black font-bold">famiglie e persone bisognose</span>, individuate attraverso il settore delle politiche giovanili del <span className="text-black font-bold">Comune di Salerno</span>.
             </p>
             
             <div className="flex items-center gap-6">
               <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center art-shadow">
-                <Heart className="w-8 h-8 text-red-500" />
+                <Users className="w-8 h-8 text-blue-600" />
               </div>
               <div>
-                <p className="font-bold text-gray-900 text-lg">Moby Dick ETS</p>
-                <p className="text-sm text-gray-400 font-medium">100% delle donazioni a scopo sociale</p>
+                <p className="font-bold text-gray-900 text-lg">Solidarietà Territoriale</p>
+                <p className="text-sm text-gray-400 font-medium">Uniti per la comunità di Salerno</p>
               </div>
             </div>
           </div>
@@ -42,8 +42,8 @@ const Participation: React.FC = () => {
               <div className="relative z-10 flex gap-6">
                 <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
                 <div>
-                  <h4 className="text-xl font-extrabold text-gray-900 mb-3">Scelta e Compilazione</h4>
-                  <p className="text-gray-500 leading-relaxed font-medium">Individua la tua opera preferita e richiedi il modulo ufficiale al banco accoglienza del Liceo.</p>
+                  <h4 className="text-xl font-extrabold text-gray-900 mb-3">Scegli l'Opera</h4>
+                  <p className="text-gray-500 leading-relaxed font-medium">Individua l'opera che più ti emoziona e richiedi il modulo ufficiale al banco accoglienza.</p>
                 </div>
               </div>
             </div>
@@ -52,8 +52,8 @@ const Participation: React.FC = () => {
                <div className="relative z-10 flex gap-6">
                 <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
                 <div>
-                  <h4 className="text-xl font-extrabold text-gray-900 mb-3">L'Offerta Segreta</h4>
-                  <p className="text-gray-500 leading-relaxed font-medium">Inserisci l'importo che desideri donare. Ogni offerta deve partire dalla base d'asta indicata sul catalogo.</p>
+                  <h4 className="text-xl font-extrabold text-gray-900 mb-3">L'Offerta</h4>
+                  <p className="text-gray-500 leading-relaxed font-medium">Inserisci l'importo della tua donazione. Ogni offerta segreta concorre all'aggiudicazione finale dell'opera.</p>
                 </div>
               </div>
             </div>
@@ -62,8 +62,8 @@ const Participation: React.FC = () => {
                <div className="relative z-10 flex gap-6">
                 <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
                 <div>
-                  <h4 className="text-xl font-extrabold text-gray-900 mb-3">Chiusura Asta</h4>
-                  <p className="text-gray-500 leading-relaxed font-medium">Al termine dell'evento, le buste verranno aperte. L'offerta più alta si aggiudicherà l'opera.</p>
+                  <h4 className="text-xl font-extrabold text-gray-900 mb-3">Conclusione</h4>
+                  <p className="text-gray-500 leading-relaxed font-medium">Al termine della serata le buste verranno aperte e le opere consegnate ai sostenitori più generosi.</p>
                 </div>
               </div>
             </div>
@@ -80,9 +80,9 @@ const Participation: React.FC = () => {
                 <Banknote className="w-4 h-4 text-yellow-400" />
                 <span className="text-[10px] font-bold uppercase tracking-widest">Informazioni Bancarie</span>
               </div>
-              <h4 className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Sostieni il <br /> progetto</h4>
+              <h4 className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Sostieni <br /> Salerno</h4>
               <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-md">
-                In caso di aggiudicazione, potrai procedere al versamento tramite bonifico. La tua ricevuta sarà il titolo di possesso dell'opera.
+                Il tuo contributo andrà direttamente a finanziare aiuti concreti per i cittadini più fragili del nostro territorio.
               </p>
             </div>
 
