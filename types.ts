@@ -12,6 +12,7 @@ export interface Opera {
   type: OperaType;
   basePrice: number;
   imageUrl: string;
+  dimensions: string;
 }
 
 export interface ParticipationStep {

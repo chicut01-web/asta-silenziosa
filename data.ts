@@ -8,7 +8,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Grande opera su tela. Tecnica mista.",
     type: OperaType.DIPINTO,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/wql9qkL.jpeg"
+    imageUrl: "https://i.imgur.com/wql9qkL.jpeg",
+    dimensions: "145 x 100 cm"
   },
   {
     id: 2,
@@ -16,15 +17,17 @@ export const OPERE_DATA: Opera[] = [
     description: "Composizione cromatica su tela.",
     type: OperaType.DIPINTO,
     basePrice: 15,
-    imageUrl: "https://i.imgur.com/7WH0sFb.jpeg"
+    imageUrl: "https://i.imgur.com/7WH0sFb.jpeg",
+    dimensions: "70 x 60 cm"
   },
   {
     id: 3,
     title: "Opera n. 3",
-    description: "Ritratto evocativo, dettagli floreali.",
+    description: "Ritratto evocativo, dettagli floral.",
     type: OperaType.DIPINTO,
     basePrice: 15,
-    imageUrl: "https://i.imgur.com/V3Q8PVY.jpeg"
+    imageUrl: "https://i.imgur.com/V3Q8PVY.jpeg",
+    dimensions: "70 x 60 cm"
   },
   {
     id: 4,
@@ -32,7 +35,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Piatto in ceramica decorata a mano. Motivo figurativo.",
     type: OperaType.CERAMICA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/Yn6ivYX.jpeg"
+    imageUrl: "https://i.imgur.com/Yn6ivYX.jpeg",
+    dimensions: "Diametro 27 cm"
   },
   {
     id: 5,
@@ -40,7 +44,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Motivo a cuori in rilievo.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/8gvKUKZ.jpeg"
+    imageUrl: "https://i.imgur.com/8gvKUKZ.jpeg",
+    dimensions: "28 x 28 cm"
   },
   {
     id: 6,
@@ -48,7 +53,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Geometrie floreali blu e oro.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/RRdKKS4.jpeg"
+    imageUrl: "https://i.imgur.com/RRdKKS4.jpeg",
+    dimensions: "28 x 28 cm"
   },
   {
     id: 7,
@@ -56,7 +62,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Decorazione classica verde e oro.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/chAG1zb.jpeg"
+    imageUrl: "https://i.imgur.com/chAG1zb.jpeg",
+    dimensions: "28 x 28 cm"
   },
   {
     id: 8,
@@ -64,7 +71,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Motivo naturalistico con figura.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/AIzJS0g.jpeg"
+    imageUrl: "https://i.imgur.com/AIzJS0g.jpeg",
+    dimensions: "28 x 28 cm"
   },
   {
     id: 9,
@@ -72,7 +80,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Composizione astratta a spirale.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/RL4pQlv.jpeg"
+    imageUrl: "https://i.imgur.com/RL4pQlv.jpeg",
+    dimensions: "28 x 28 cm"
   },
   {
     id: 10,
@@ -80,7 +89,8 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Fenice stilizzata rossa e nera.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/UMj2W9U.jpeg"
+    imageUrl: "https://i.imgur.com/UMj2W9U.jpeg",
+    dimensions: "28 x 28 cm"
   },
   {
     id: 11,
@@ -88,6 +98,7 @@ export const OPERE_DATA: Opera[] = [
     description: "Mattonella in terracotta patinata. Notte stellata materica.",
     type: OperaType.TERRACOTTA,
     basePrice: 20,
-    imageUrl: "https://i.imgur.com/6t1JkvX.jpeg"
+    imageUrl: "https://i.imgur.com/6t1JkvX.jpeg",
+    dimensions: "28 x 28 cm"
   }
 ];

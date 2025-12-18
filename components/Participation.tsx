@@ -109,7 +109,7 @@ const Participation: React.FC = () => {
                 <div className="pt-8 border-t border-white/10 flex items-center justify-between">
                   <div>
                     <label className="text-[10px] uppercase font-bold text-yellow-400/50 tracking-[0.2em] block mb-1">Causale suggerita</label>
-                    <p className="text-lg font-bold">Donazione Opera n...</p>
+                    <p className="text-lg font-bold">Donazione</p>
                   </div>
                   <div className="hidden sm:block">
                      <p className="text-[10px] italic text-gray-500">Tocca per copiare IBAN</p>
