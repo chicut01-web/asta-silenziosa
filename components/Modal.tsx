@@ -17,16 +17,23 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
   const total = OPERE_DATA.length;
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      {/* Background Overlay */}
       <div 
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-500"
+        className="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
         onClick={onClose}
       ></div>
       
-      <div className="relative bg-white w-full max-w-[500px] max-h-[95vh] rounded-[32px] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in duration-300">
-        {/* Header bar from screenshot */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+      {/* Modal Container: my-auto garantisce il centraggio verticale senza tagliare i bordi se l'altezza è ridotta */}
+      <div className="relative bg-white w-full max-w-[500px] my-auto rounded-[32px] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in duration-300 max-h-[calc(100dvh-2rem)] md:max-h-[90vh]">
+        
+        {/* Header bar */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white shrink-0 z-10">
+          <button 
+            onClick={onClose} 
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors active:scale-95"
+            aria-label="Chiudi"
+          >
             <X className="w-5 h-5 text-gray-500" />
           </button>
           <p className="text-sm font-bold text-gray-900">
@@ -35,24 +42,25 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
           <div className="w-9"></div> {/* Spacer for symmetry */}
         </div>
 
-        <div className="overflow-y-auto flex-1">
+        {/* Scrollable Content */}
+        <div className="overflow-y-auto flex-1 overscroll-contain">
           {/* Image */}
           <div className="w-full bg-gray-50 flex items-center justify-center overflow-hidden">
             <img 
               src={opera.imageUrl} 
               alt={opera.title}
-              className="w-full h-auto object-contain max-h-[300px]"
+              className="w-full h-auto object-contain max-h-[40vh] md:max-h-[350px]"
             />
           </div>
 
-          <div className="p-8">
+          <div className="p-6 md:p-8">
             {/* Type badge */}
             <span className="inline-block px-3 py-1 rounded-lg bg-gray-100 text-gray-400 text-[9px] font-bold uppercase tracking-wider mb-4">
               {opera.type}
             </span>
 
             {/* Title */}
-            <h2 className="text-3xl font-extrabold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-6 leading-tight">
               {opera.title}
             </h2>
 
@@ -66,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
 
             {/* Info blocks: Dimensions and Price */}
             <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-[#f9f9f9] p-5 rounded-2xl border border-gray-50">
+              <div className="bg-[#f9f9f9] p-4 md:p-5 rounded-2xl border border-gray-50">
                 <div className="flex items-center gap-2 text-gray-400 mb-1">
                   <Ruler className="w-3.5 h-3.5" />
                   <span className="text-[9px] font-bold uppercase tracking-widest">Dimensioni</span>
@@ -74,7 +82,7 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
                 <p className="text-sm font-bold text-gray-900">{opera.dimensions}</p>
               </div>
 
-              <div className="bg-[#f9f9f9] p-5 rounded-2xl border border-gray-50">
+              <div className="bg-[#f9f9f9] p-4 md:p-5 rounded-2xl border border-gray-50">
                 <div className="flex items-center gap-2 text-gray-400 mb-1">
                   <Tag className="w-3.5 h-3.5" />
                   <span className="text-[9px] font-bold uppercase tracking-widest">Base d'asta</span>
@@ -83,7 +91,7 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
               </div>
             </div>
 
-            {/* Blue CTA box from screenshot */}
+            {/* CTA box */}
             <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 text-center">
               <p className="text-[11px] font-bold text-blue-700 leading-relaxed">
                 Interessato? Richiedi il modulo cartaceo per fare un'offerta.
@@ -93,10 +101,10 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
         </div>
 
         {/* Footer Navigation */}
-        <div className="p-6 border-t border-gray-100 bg-white grid grid-cols-2 gap-4">
+        <div className="p-4 md:p-6 border-t border-gray-100 bg-white grid grid-cols-2 gap-4 shrink-0">
           <button 
             onClick={() => onNavigate('prev')}
-            className="flex items-center justify-center gap-2 py-4 px-6 bg-gray-50 hover:bg-gray-100 text-gray-900 rounded-2xl font-bold text-sm transition-all"
+            className="flex items-center justify-center gap-2 py-3 md:py-4 px-4 md:px-6 bg-gray-50 hover:bg-gray-100 text-gray-900 rounded-2xl font-bold text-sm transition-all active:scale-95"
           >
             <ArrowLeft className="w-4 h-4" />
             Precedente
@@ -104,7 +112,7 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
           
           <button 
             onClick={() => onNavigate('next')}
-            className="flex items-center justify-center gap-2 py-4 px-6 bg-[#1a1a1a] hover:bg-black text-white rounded-2xl font-bold text-sm transition-all"
+            className="flex items-center justify-center gap-2 py-3 md:py-4 px-4 md:px-6 bg-[#1a1a1a] hover:bg-black text-white rounded-2xl font-bold text-sm transition-all active:scale-95"
           >
             Successiva
             <ArrowRight className="w-4 h-4" />

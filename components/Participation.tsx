@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Heart, CheckCircle, Copy, Banknote, Users } from 'lucide-react';
+import { Heart, CheckCircle, Copy, Banknote } from 'lucide-react';
 
 const Participation: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -43,7 +43,7 @@ const Participation: React.FC = () => {
                 <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
                 <div>
                   <h4 className="text-xl font-extrabold text-gray-900 mb-3">Compila il Biglietto</h4>
-                  <p className="text-gray-500 leading-relaxed font-medium">Ogni partecipante troverà una busta bianca sul proprio tavolo. Scrivi il tuo <span className="text-black font-bold">Nome e Cognome</span>, il numero delll'opera scelta e l'importo della tua offerta.</p>
+                  <p className="text-gray-500 leading-relaxed font-medium">Ogni partecipante troverà una busta bianca sul proprio tavolo. Scrivi il tuo <span className="text-black font-bold">Nome e Cognome</span>, il numero dell'opera scelta e l'importo della tua offerta.</p>
                 </div>
               </div>
             </div>
