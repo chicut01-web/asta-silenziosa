@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 interface NavbarProps {
   onBrowse: () => void;
@@ -7,59 +8,93 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onBrowse, onParticipate }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-5">
-        <div className="glass art-shadow rounded-2xl md:rounded-full px-4 md:px-6 py-2 md:py-3 flex justify-between items-center border border-white/50 ring-1 ring-black/5">
+    <motion.nav 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 right-0 z-[150] pointer-events-none"
+    >
+      {/* Scroll Progress Indicator */}
+      <motion.div 
+        className="absolute top-0 left-0 right-0 h-[3px] bg-yellow-500 origin-left z-[160]"
+        style={{ scaleX }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className={`
+          glass rounded-[28px] md:rounded-full px-5 py-3 
+          flex justify-between items-center border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)]
+          transition-all duration-700 pointer-events-auto
+          ${scrolled ? 'bg-white/90 translate-y-[-10px] scale-[0.98] shadow-[0_20px_40px_rgba(0,0,0,0.08)]' : 'bg-white/40'}
+        `}>
           
-          {/* Left: Liceo Logo & Info */}
-          <div className="flex items-center gap-3">
-            <div 
-              className="w-10 h-10 md:w-14 md:h-14 bg-white border border-gray-100 flex items-center justify-center rounded-lg md:rounded-xl overflow-hidden shadow-inner group cursor-pointer" 
+          {/* Brand - Liceo Sabatini Menna */}
+          <div className="flex items-center gap-4">
+            <motion.div 
+              whileHover={{ rotate: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-12 h-12 bg-white border border-gray-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-sm cursor-pointer ring-4 ring-black/5" 
               onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
             >
               <img 
                 src="https://i.imgur.com/udX3N9P.jpeg" 
                 alt="Logo Liceo" 
-                className="w-full h-full object-contain p-1 transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-contain p-1"
               />
-            </div>
-            <div className="hidden xs:block">
-              <h1 className="text-[10px] md:text-xs font-black uppercase tracking-tighter text-gray-900 leading-none">Liceo Sabatini Menna</h1>
-              <p className="text-[7px] md:text-[8px] text-yellow-600 font-bold uppercase tracking-[0.2em] mt-0.5">Asta Silenziosa 2025</p>
+            </motion.div>
+            <div className="hidden sm:block">
+              <h1 className="text-xs font-black uppercase tracking-tighter text-gray-900 leading-none">Liceo Sabatini Menna</h1>
+              <p className="text-[8px] text-yellow-600 font-bold uppercase tracking-[0.25em] mt-1">Asta Silenziosa 2025</p>
             </div>
           </div>
           
-          {/* Center: Navigation Links */}
-          <div className="flex items-center gap-1 md:gap-4">
-            <button 
-              onClick={onBrowse}
-              className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-black hover:bg-gray-50 px-3 py-2 rounded-full transition-all"
-            >
-              Opere
-            </button>
-            <button 
-              onClick={onParticipate}
-              className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-black hover:bg-gray-50 px-3 py-2 rounded-full transition-all"
-            >
-              Partecipa
-            </button>
+          {/* Nav Links */}
+          <div className="flex items-center gap-2">
+            {['Opere', 'Partecipa'].map((item, i) => (
+              <motion.button 
+                key={item}
+                whileHover={{ backgroundColor: "rgba(0,0,0,0.04)" }}
+                whileTap={{ scale: 0.95 }}
+                onClick={i === 0 ? onBrowse : onParticipate}
+                className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-black px-6 py-2.5 rounded-full transition-all"
+              >
+                {item}
+              </motion.button>
+            ))}
           </div>
 
-          {/* Right: Moby Dick Logo only */}
-          <div className="flex items-center">
-            <div className="w-10 h-10 md:w-14 md:h-14 bg-white border border-gray-100 flex items-center justify-center rounded-lg md:rounded-xl overflow-hidden shadow-inner group shadow-lg shadow-black/5">
+          {/* Right Brand - Moby Dick */}
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center"
+          >
+            <div className="w-12 h-12 bg-white border border-gray-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-sm ring-4 ring-black/5">
               <img 
                 src="https://i.imgur.com/jLxdbGd.png" 
                 alt="Logo Moby Dick" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-contain p-1"
               />
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

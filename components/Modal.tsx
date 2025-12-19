@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Ruler, Tag, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Opera } from '../types';
 import { OPERE_DATA } from '../data';
@@ -19,106 +20,126 @@ const Modal: React.FC<ModalProps> = ({ opera, onClose, onNavigate }) => {
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Background Overlay */}
-      <div 
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         className="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
         onClick={onClose}
-      ></div>
+      />
       
-      {/* Modal Container: my-auto garantisce il centraggio verticale senza tagliare i bordi se l'altezza è ridotta */}
-      <div className="relative bg-white w-full max-w-[500px] my-auto rounded-[32px] overflow-hidden shadow-2xl flex flex-col animate-in fade-in zoom-in duration-300 max-h-[calc(100dvh-2rem)] md:max-h-[90vh]">
+      {/* Modal Container */}
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative bg-white w-full max-w-[500px] my-auto rounded-[32px] overflow-hidden shadow-2xl flex flex-col max-h-[calc(100dvh-2rem)] md:max-h-[90vh]"
+      >
         
         {/* Header bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white shrink-0 z-10">
-          <button 
+          <motion.button 
+            whileTap={{ scale: 0.9 }}
             onClick={onClose} 
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors active:scale-95"
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
             aria-label="Chiudi"
           >
             <X className="w-5 h-5 text-gray-500" />
-          </button>
+          </motion.button>
           <p className="text-sm font-bold text-gray-900">
             Opera {currentIndex + 1} <span className="text-gray-400 font-medium italic">di {total}</span>
           </p>
-          <div className="w-9"></div> {/* Spacer for symmetry */}
+          <div className="w-9"></div>
         </div>
 
         {/* Scrollable Content */}
         <div className="overflow-y-auto flex-1 overscroll-contain">
-          {/* Image */}
-          <div className="w-full bg-gray-50 flex items-center justify-center overflow-hidden">
-            <img 
-              src={opera.imageUrl} 
-              alt={opera.title}
-              className="w-full h-auto object-contain max-h-[40vh] md:max-h-[350px]"
-            />
-          </div>
-
-          <div className="p-6 md:p-8">
-            {/* Type badge */}
-            <span className="inline-block px-3 py-1 rounded-lg bg-gray-100 text-gray-400 text-[9px] font-bold uppercase tracking-wider mb-4">
-              {opera.type}
-            </span>
-
-            {/* Title */}
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-6 leading-tight">
-              {opera.title}
-            </h2>
-
-            {/* Description with yellow bar */}
-            <div className="flex gap-4 mb-8">
-              <div className="w-1 bg-yellow-400 flex-shrink-0"></div>
-              <p className="text-sm text-gray-500 leading-relaxed py-1">
-                {opera.description}
-              </p>
-            </div>
-
-            {/* Info blocks: Dimensions and Price */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-[#f9f9f9] p-4 md:p-5 rounded-2xl border border-gray-50">
-                <div className="flex items-center gap-2 text-gray-400 mb-1">
-                  <Ruler className="w-3.5 h-3.5" />
-                  <span className="text-[9px] font-bold uppercase tracking-widest">Dimensioni</span>
-                </div>
-                <p className="text-sm font-bold text-gray-900">{opera.dimensions}</p>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={opera.id}
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Image */}
+              <div className="w-full bg-gray-50 flex items-center justify-center overflow-hidden">
+                <motion.img 
+                  layoutId={`opera-img-${opera.id}`}
+                  src={opera.imageUrl} 
+                  alt={opera.title}
+                  className="w-full h-auto object-contain max-h-[40vh] md:max-h-[350px]"
+                />
               </div>
 
-              <div className="bg-[#f9f9f9] p-4 md:p-5 rounded-2xl border border-gray-50">
-                <div className="flex items-center gap-2 text-gray-400 mb-1">
-                  <Tag className="w-3.5 h-3.5" />
-                  <span className="text-[9px] font-bold uppercase tracking-widest">Base d'asta</span>
-                </div>
-                <p className="text-xl font-extrabold text-gray-900">{opera.basePrice}€</p>
-              </div>
-            </div>
+              <div className="p-6 md:p-8">
+                <span className="inline-block px-3 py-1 rounded-lg bg-gray-100 text-gray-400 text-[9px] font-bold uppercase tracking-wider mb-4">
+                  {opera.type}
+                </span>
 
-            {/* CTA box */}
-            <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 text-center">
-              <p className="text-[11px] font-bold text-blue-700 leading-relaxed">
-                Interessato? Richiedi il modulo cartaceo per fare un'offerta.
-              </p>
-            </div>
-          </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tighter">
+                  {opera.title}
+                </h2>
+
+                <div className="flex gap-4 mb-8">
+                  <div className="w-1 bg-yellow-400 flex-shrink-0"></div>
+                  <p className="text-sm text-gray-500 leading-relaxed py-1">
+                    {opera.description}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-[#f9f9f9] p-4 md:p-5 rounded-2xl border border-gray-100 group">
+                    <div className="flex items-center gap-2 text-gray-400 mb-1">
+                      <Ruler className="w-3.5 h-3.5" />
+                      <span className="text-[9px] font-bold uppercase tracking-widest">Dimensioni</span>
+                    </div>
+                    <p className="text-sm font-bold text-gray-900">{opera.dimensions}</p>
+                  </div>
+
+                  <div className="bg-[#f9f9f9] p-4 md:p-5 rounded-2xl border border-gray-100 group">
+                    <div className="flex items-center gap-2 text-gray-400 mb-1">
+                      <Tag className="w-3.5 h-3.5" />
+                      <span className="text-[9px] font-bold uppercase tracking-widest">Base d'asta</span>
+                    </div>
+                    <p className="text-xl font-extrabold text-gray-900">{opera.basePrice}€</p>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6 text-center">
+                  <p className="text-[11px] font-bold text-blue-700 leading-relaxed">
+                    Interessato? Richiedi il modulo cartaceo per fare un'offerta.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Footer Navigation */}
         <div className="p-4 md:p-6 border-t border-gray-100 bg-white grid grid-cols-2 gap-4 shrink-0">
-          <button 
+          <motion.button 
+            whileHover={{ x: -2 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => onNavigate('prev')}
-            className="flex items-center justify-center gap-2 py-3 md:py-4 px-4 md:px-6 bg-gray-50 hover:bg-gray-100 text-gray-900 rounded-2xl font-bold text-sm transition-all active:scale-95"
+            className="flex items-center justify-center gap-2 py-3 md:py-4 px-4 md:px-6 bg-gray-50 hover:bg-gray-100 text-gray-900 rounded-2xl font-bold text-sm transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
             Precedente
-          </button>
+          </motion.button>
           
-          <button 
+          <motion.button 
+            whileHover={{ x: 2 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => onNavigate('next')}
-            className="flex items-center justify-center gap-2 py-3 md:py-4 px-4 md:px-6 bg-[#1a1a1a] hover:bg-black text-white rounded-2xl font-bold text-sm transition-all active:scale-95"
+            className="flex items-center justify-center gap-2 py-3 md:py-4 px-4 md:px-6 bg-[#1a1a1a] hover:bg-black text-white rounded-2xl font-bold text-sm transition-all shadow-lg shadow-black/10"
           >
             Successiva
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
