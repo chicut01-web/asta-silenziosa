@@ -53,7 +53,7 @@ const Participation: React.FC = () => {
                 <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
                 <div>
                   <h4 className="text-xl font-extrabold text-gray-900 mb-3">Inserisci nella Busta</h4>
-                  <p className="text-gray-500 leading-relaxed font-medium">Una volta compilato, riponi il biglietto all'interno della busta dedicata. La tua offerta rimarrà segreta fino al termine dell'asta.</p>
+                  <p className="text-gray-500 leading-relaxed font-medium">Una volta compilato, inserisci il biglietto nella busta predisposta e depositala nell’urna delle offerte. La tua offerta rimarrà segreta fino al termine dell’asta.</p>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ const Participation: React.FC = () => {
               </div>
               <h4 className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Sostieni <br /> Salerno</h4>
               <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-md">
-                Il tuo contributo andrà direttamente a finanziare aiuti concreti per i cittadini più fragili del nostro territorio, gestiti da Moby Dick ETS.
+                Il tuo contributo andrà direttamente a finanziare aiuti concreti per i cittadini più fragili del nostro territorio.
               </p>
             </div>
 
