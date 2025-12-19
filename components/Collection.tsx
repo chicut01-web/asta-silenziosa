@@ -20,7 +20,7 @@ const Collection: React.FC<CollectionProps> = ({ onSelectOpera }) => {
             </h3>
           </div>
           <p className="text-gray-400 text-sm max-w-xs font-medium leading-relaxed">
-            Ogni opera è un pezzo unico numerato, autenticato dal Liceo Artistico per sostenere <span className="text-gray-900 font-bold">Moby Dick ETS</span>.
+            Ogni opera è un pezzo unico numerato, autenticato dal Liceo Artistico per sostenere <span className="text-gray-900 font-bold">famiglie e persone bisognose</span> individuate dal settore <span className="text-gray-900 font-bold">politiche sociali</span> del Comune di Salerno.
           </p>
         </div>
         
